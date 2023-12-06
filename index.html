@@ -3,28 +3,29 @@
 <head>
 	<link rel="stylesheet" href="style.css" />
 	<script src="main.js"></script>
-	<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 </head>
 
 <body>
-	<h1>Hello World!!</h1>
-	<button onclick="startGame()">Start</button>
-	<button onclick="makeGuess()">Make Guess</button>
-	<button onclick="giveUp()">Give Up</button>
-	<span>Guesses Remaining: </span>
-	<span id="guesses"></span>
-	<input/>
-	<img src="castle.jpg"/>
-	
-	<select>
-		<option>1</option>
-		<option>2</option>
-		<option>3</option>
-	</select>
-	<a href="cars.html">Cars!</a>
-
-	<div id="app">{{ message }}</div>
-	<script src="app.js"></script>
+	<h1 style="color:hotpink">Welcome to the Guessing Game!</h1>
+	<img src="game.png" style="width:200"/>
+	<p>Your goal is to guess the number betwee 1 and 100 in 10 turns</p>
+	<div id="setup">
+		<button onclick="startGame()">Start</button>
+	</div>
+	<div id="game" style="display: none;">
+		<h3>Good Luck!</h3>
+		
+		<div>	
+			<input type="number" id="guess" onkeypress="onKeyPress(event)"/>
+			<button onclick="makeGuess()">Make Guess</button>
+		</div>
+		<div>
+			<span>Guesses Remaining: </span>
+			<span id="guesses">0</span>
+		</div>
+		<p id="hint"></p>
+		<br/>
+		<button onclick="giveUp()">Give Up</button>
+	</div>
 </body>
-
 </html>

@@ -1,20 +1,35 @@
 let answer = 0
-let guesses = 5;
+const MAX_GUESSES = 10;
+let guesses = MAX_GUESSES;
+
+
+function onKeyPress(e) {
+	if(e.key === 'Enter'){
+		makeGuess();
+	}
+}
 
 function startGame(){
 	answer = Math.floor(Math.random()*100)
-	alert('Game started, guess a number betwee 1 and 100');
-	guesses = 5
+	//alert('Game started, guess a number betwee 1 and 100');
+	guesses = MAX_GUESSES;
 	updateGuesses();
+	document.querySelector('#game').style.display = 'block';
+	document.querySelector('#setup').style.display = 'none'
 }
 
 function makeGuess(){
-    let guess = document.querySelector('input').value
-	guess = parseInt(guess)
+	let hint = document.querySelector('#hint');
+    let guess_box = document.querySelector('input')
+	let guess = parseInt(guess_box.value);
+
 	if(guess == answer){
-		alert('Correct!')
+		hint.innerHTML = 'Correct!'
 	}else{
-		alert('Wrong')
+		guess_box.value = '';
+		let lower = guess > answer;
+		let message = 'Wrong! ' + guess + ' was ' + (lower ? 'too high' : 'too low');
+		hint.innerHTML = message;
 	}
 	guesses = guesses-1;
 	updateGuesses();
@@ -26,5 +41,7 @@ function updateGuesses(){
 
 function giveUp(){
 	alert('The answer was ' + answer)
+	document.querySelector('#game').style.display = 'none';
+	document.querySelector('#setup').style.display = 'block';
 }
 
